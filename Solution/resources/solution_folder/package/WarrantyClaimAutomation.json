@@ -1,0 +1,26 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "WarrantyClaimAutomation",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "d7dae1b2-8afb-4e48-a87e-1a123c0d0636",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": null,
+      "fileReference": null,
+      "name": "WarrantyClaimAutomation",
+      "description": null
+    },
+    "locks": [],
+    "key": "a73ff33a-05fa-4311-93d8-31ed6ae5c499"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "DocVersion": "1.0.0",
+  "StudioMinVersion": "2025.04.0",
+  "SolutionId": "74ca0012-53e3-4d92-8a98-2e40855f700e",
+  "Projects": [
+    {
+      "Type": "Process",
+      "ProjectRelativePath": "WarrantyClaimAutomation/project.uiproj",
+      "Id": "d7dae1b2-8afb-4e48-a87e-1a123c0d0636"
+    }
+  ]
+}
