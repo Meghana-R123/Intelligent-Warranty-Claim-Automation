@@ -1,0 +1,31 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "54e0d0dc-88de-4c1d-afc2-c3283af5da14",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_ClaimId": {
+            "type": "string",
+            "x-default-expression": "\"CLM-001\"",
+            "default": "CLM-001"
+          },
+          "in_InvoicePdfPath": {
+            "type": "string",
+            "x-default-expression": "\"C:\\Users\\Kusuma R\\Intelligent-Warranty-Claim-Automation\\Solution\\WarrantyClaimAutomation\\Data\\Input\\CLM-001\\invoice.pdf\"",
+            "default": "C:\\Users\\Kusuma R\\Intelligent-Warranty-Claim-Automation\\Solution\\WarrantyClaimAutomation\\Data\\Input\\CLM-001\\invoice.pdf"
+          },
+          "in_ClaimExcelPath": {
+            "type": "string",
+            "x-default-expression": "\"C:\\Users\\Kusuma R\\Intelligent-Warranty-Claim-Automation\\Solution\\WarrantyClaimAutomation\\Data\\Input\\CLM-001\\claim.xlsx\"",
+            "default": "C:\\Users\\Kusuma R\\Intelligent-Warranty-Claim-Automation\\Solution\\WarrantyClaimAutomation\\Data\\Input\\CLM-001\\claim.xlsx"
+          }
+        },
+        "required": []
+      }
+    }
+  ]
+}
