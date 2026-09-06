@@ -1,4 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_ClaimId="CLM-001" this:Main.in_InvoicePdfPath="C:\Users\Kusuma R\Intelligent-Warranty-Claim-Automation\Solution\WarrantyClaimAutomation\Data\Input\CLM-001\invoice.pdf" this:Main.in_ClaimExcelPath="C:\Users\Kusuma R\Intelligent-Warranty-Claim-Automation\Solution\WarrantyClaimAutomation\Data\Input\CLM-001\claim.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ClaimId" Type="InArgument(x:String)" />
+    <x:Property Name="in_InvoicePdfPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_ClaimExcelPath" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -29,6 +38,9 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Activities.Runtime.Collections</x:String>
       <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.WarrantyClaimV1WarrantyClaimV1.Bundle</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -78,35 +90,66 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.OH2ki2AjhEC1BZsvN4sGQmE2</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="744.4000000000001,1813.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="897.2,2688.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="productSerial" />
+      <Variable x:TypeArguments="x:String" Name="purchaseDate" />
+      <Variable x:TypeArguments="x:String" Name="warrantyPeriod" />
+      <Variable x:TypeArguments="x:String" Name="claimDescription" />
+      <Variable x:TypeArguments="x:String" Name="invoiceAmount" />
+      <Variable x:TypeArguments="x:String" Name="product" />
       <Variable x:TypeArguments="x:String" Name="decisionReason" />
       <Variable x:TypeArguments="x:String" Name="claimStatus" />
       <Variable x:TypeArguments="x:String" Name="productImagePath" />
       <Variable x:TypeArguments="x:String" Name="invoicePdfPath" />
       <Variable x:TypeArguments="x:String" Name="claimExcelPath" />
       <Variable x:TypeArguments="x:String" Name="claimId" />
-      <Variable x:TypeArguments="x:Boolean" Name="inputValid">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="inputValid" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="506.4,1790.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="506.4,2665.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="504.8,1343.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="504.8,2218.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="471.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[claimExcelPath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[in_ClaimExcelPath]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="471.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[invoicePdfPath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[in_InvoicePdfPath]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="471.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[claimId]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[in_ClaimId]</InArgument>
+            </Assign.Value>
+          </Assign>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="InitializeClaimSystem - Invoke Workflow File (Workflows\InitializeClaimSystem.xaml)" sap:VirtualizedContainerService.HintSize="471.2,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\InitializeClaimSystem.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <scg:Dictionary x:TypeArguments="x:String, Argument" />
@@ -121,22 +164,54 @@
               <OutArgument x:TypeArguments="x:Boolean" x:Key="out_InputValid">[inputValid]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <If Condition="[inputValid]" sap:VirtualizedContainerService.HintSize="471.2,931.2" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[inputValid]" sap:VirtualizedContainerService.HintSize="471.2,1283.2" sap2010:WorkflowViewState.IdRef="If_1">
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="469.6,576" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="469.6,928" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="DocumentIntelligence - Invoke Workflow File (Workflows\DocumentIntelligence.xaml)" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Workflows\DocumentIntelligence.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_Product">[product]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_InvoiceAmount">[invoiceAmount]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_ClaimDescription">[claimDescription]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_WarrantyPeriod">[warrantyPeriod]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_PurchaseDate">[purchaseDate]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_ProductSerial">[productSerial]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_ClaimId">[claimId]</OutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ClaimExcelPath">[claimExcelPath]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_InvoicePdfPath">[invoicePdfPath]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ClaimId">[claimId]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClaimProcessing - Invoke Workflow File (Workflows\ClaimProcessing.xaml)" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\ClaimProcessing.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ProductSerial">[productSerial]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_PurchaseDate">[purchaseDate]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_WarrantyPeriod">[warrantyPeriod]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ClaimDescription">[claimDescription]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceAmount">[invoiceAmount]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Product">[product]</InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_DecisionReason">[decisionReason]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_ClaimStatus">[claimStatus]</OutArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_ProductImagePath">[productImagePath]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_InvoicePdfPath">[invoicePdfPath]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_ClaimExcelPath">[claimExcelPath]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_ClaimId">[claimId]</InArgument>
-                    <OutArgument x:TypeArguments="x:String" x:Key="out_ClaimStatus">[claimStatus]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClaimDecision - Invoke Workflow File (Workflows\ClaimDecision.xaml)" sap:VirtualizedContainerService.HintSize="436,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Workflows\ClaimDecision.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
                     <OutArgument x:TypeArguments="x:String" x:Key="out_DecisionReason">[decisionReason]</OutArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="out_ClaimStatus">[claimStatus]</OutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceAmount">[invoiceAmount]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ClaimDescription">[claimDescription]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_WarrantyPeriod">[warrantyPeriod]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_PurchaseDate">[purchaseDate]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ProductSerial">[productSerial]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ClaimId">[claimId]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Claim status: &quot; + claimStatus]" />
