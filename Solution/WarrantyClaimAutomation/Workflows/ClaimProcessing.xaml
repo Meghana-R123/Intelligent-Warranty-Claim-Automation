@@ -91,9 +91,10 @@
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ClaimProcessing" sap:VirtualizedContainerService.HintSize="897.2,1060.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ClaimProcessing" sap:VirtualizedContainerService.HintSize="1161.2,1060.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -108,7 +109,7 @@
         <OutArgument x:TypeArguments="x:String">[out_ClaimStatus]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">["Pending Review"]</InArgument>
+        <InArgument x:TypeArguments="x:String">["Processing"]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,165.6" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -116,7 +117,7 @@
         <OutArgument x:TypeArguments="x:String">[out_DecisionReason]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">["Awaiting document intelligence results."]</InArgument>
+        <InArgument x:TypeArguments="x:String">["Document intelligence completed. Claim is ready for decision."]</InArgument>
       </Assign.Value>
     </Assign>
   </Sequence>

@@ -7,3 +7,16 @@
 ################################################################################
 # End of UiPath Studio common ignores
 ################################################################################
+
+# UiPath local/generated settings
+Solution/WarrantyClaimAutomation/.settings/*-590bb27b.json
+
+# Runtime output
+Solution/WarrantyClaimAutomation/Data/Output/
+
+# Generated workflow metadata
+Solution/WarrantyClaimAutomation/Main.xaml.json
+Solution/WarrantyClaimAutomation/.project/JitCustomTypesSchema.json
+Solution/WarrantyClaimAutomation/.settings/Debug/settings-590bb27b.json
+Solution/WarrantyClaimAutomation/.settings/Design/settings-590bb27b.json
+Solution/WarrantyClaimAutomation/.settings/Release/settings-590bb27b.json

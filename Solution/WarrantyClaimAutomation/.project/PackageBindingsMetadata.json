@@ -822,6 +822,34 @@
         "SubBindings": [],
         "DefaultValueSource": "Property"
       }
+    ],
+    "UiPath.IntelligentOCR.StudioWeb.Activities.ExtractDocumentDataWithDocumentData\u00601": [
+      {
+        "Type": "ixpDeployment",
+        "PublishNullValues": false,
+        "Key": {
+          "Value": "BindingsKey",
+          "ValueSource": "Property"
+        },
+        "Values": {
+          "folderPath": {
+            "Value": "FolderPath",
+            "ValueSource": "Property"
+          },
+          "name": {
+            "Value": "ExtractionModel",
+            "ValueSource": "Property"
+          }
+        },
+        "Arguments": {
+          "BindingsVersion": {
+            "Value": "2.2",
+            "ValueSource": "Constant"
+          }
+        },
+        "SubBindings": [],
+        "DefaultValueSource": "Property"
+      }
     ]
   }
 }

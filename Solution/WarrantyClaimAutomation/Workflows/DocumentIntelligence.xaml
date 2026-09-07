@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DocumentIntelligence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasewb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.WarrantyClaimV1WarrantyClaimV1.Bundle;assembly=ExtendedExtractionRe.OH2ki2AjhEC1BZsvN4sGQmE2" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DocumentIntelligence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasewb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.WarrantyClaimV1WarrantyClaimV1.Bundle;assembly=ExtendedExtractionRe.vgGvE34B8XB1Z8zwi3HXtl7" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Product" Type="OutArgument(x:String)" />
     <x:Property Name="out_InvoiceAmount" Type="OutArgument(x:String)" />
@@ -26,6 +26,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>697.2,418.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DocumentIntelligence_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -69,6 +70,8 @@
       <x:String>System.Linq.Expressions</x:String>
       <x:String>UiPath.Platform</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.Bindings</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.Telemetry</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -125,20 +128,21 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
       <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.vgGvE34B8XB1Z8zwi3HXtl7</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DocumentIntelligence" sap:VirtualizedContainerService.HintSize="663.6,2056" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="697.2,1911.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="upr:IResource" Name="invoiceFile" />
       <Variable x:TypeArguments="uisad:IDocumentData(uisasewb:WarrantyClaimV1WarrantyClaimV1)" Name="ExtractionResults" />
-      <Variable x:TypeArguments="x:String" Name="out_CustomerName" />
-      <Variable x:TypeArguments="x:String" Name="out_InvoiceNumber" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasewb:WarrantyClaimV1WarrantyClaimV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ActivityMajorVersion="2" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="5cbb18a6-0c9b-f111-9b33-000d3ab67660" ExtractionResults="[ExtractionResults]" ExtractorName="WarrantyClaim_v1_WarrantyClaim_v1" FileInput="[LocalResource.FromPath(in_InvoicePdfPath)]" GenerateData="True" sap:VirtualizedContainerService.HintSize="449.6,472" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="d0d8e239-e69a-f111-9b33-002248a056d7" ModernDocumentTypeName="WarrantyClaim" ProjectId="f30918ea-e59a-f111-9b33-000d3ad8af98" ProjectName="WarrantyClaimDocumentProcessing" ProjectVersionName="WarrantyClaim_v1" ProjectVersionNumber="1" TimeoutInSeconds="3600">
+    <ui:PathExists Exists="{x:Null}" DisplayName="Get Local File or Folder" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[in_InvoicePdfPath]" PathType="File" Resource="[invoiceFile]" />
+    <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasewb:WarrantyClaimV1WarrantyClaimV1" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ActivityMajorVersion="2" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="be99f939-92aa-f111-9b33-000d3ab98ec9" ExtractionResults="[ExtractionResults]" ExtractorName="WarrantyClaim_v1_WarrantyClaim_v1" FileInput="[invoiceFile]" GenerateData="True" sap:VirtualizedContainerService.HintSize="449.6,502.4" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="79d015d5-88aa-f111-9b33-0022489f5315" ModernDocumentTypeName="WarrantyClaim" ProjectId="acecde6d-88aa-f111-9b35-0022489a26a1" ProjectName="WarrantyClaimDocumentProcessing" ProjectVersionName="WarrantyClaim_v1" ProjectVersionNumber="1" TimeoutInSeconds="3600">
       <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
         <InArgument x:TypeArguments="s:Nullable(x:Int32)">
           <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -155,26 +159,26 @@
     </p:ExtractDocumentDataWithDocumentData>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_ClaimId]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_InvoiceAmount]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ClaimID.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.InvoiceAmount.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_ProductSerial]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_ClaimDescription]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ProductSerial.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ClaimDescription.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_PurchaseDate]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_Product]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.PurchaseDate.Value.ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.Product.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
@@ -182,47 +186,31 @@
         <OutArgument x:TypeArguments="x:String">[out_WarrantyPeriod]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.WarrantyPeriod.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.WarrantyPeriod.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_Product]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_PurchaseDate]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.Product.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.PurchaseDate.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_ClaimDescription]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_ProductSerial]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ClaimDescription.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ProductSerial.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign sap:VirtualizedContainerService.HintSize="449.6,165.6" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_InvoiceAmount]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[out_ClaimId]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.InvoiceAmount.ToString]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_8">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_InvoiceNumber]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.InvoiceNumber.Value]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="449.6,165.6" sap2010:WorkflowViewState.IdRef="Assign_9">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[out_CustomerName]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.CustomerName.Value]</InArgument>
+        <InArgument x:TypeArguments="x:String">[ExtractionResults.Data.ClaimID.Value.ToString]</InArgument>
       </Assign.Value>
     </Assign>
   </Sequence>
